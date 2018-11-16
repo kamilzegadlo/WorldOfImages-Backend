@@ -20,5 +20,6 @@ namespace WorldOfImages_APITest
             //assert
             Assert.Equal("fixedPlace", result);
         }
+
     }
 }
