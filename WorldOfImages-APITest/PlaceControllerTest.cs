@@ -1,5 +1,6 @@
-using WorldOfImages_API.Controllers;
+using WorldOfImagesAPI.Controllers;
 using WorldOfImagesAPI.ValueObjects;
+using WorldOfImagesAPI.DomainEntities;
 using Xunit;
 
 namespace WorldOfImages_APITest
@@ -18,7 +19,7 @@ namespace WorldOfImages_APITest
             var result = placeController.Get(getPlaceRequest);
 
             //assert
-            Assert.Equal("fixedPlace", result);
+            Assert.IsType(typeof(Place), result);
         }
 
     }

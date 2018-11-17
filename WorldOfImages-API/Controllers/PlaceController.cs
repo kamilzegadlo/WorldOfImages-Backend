@@ -1,19 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using WorldOfImagesAPI.ValueObjects;
+using WorldOfImagesAPI.DomainEntities;
 
-namespace WorldOfImages_API.Controllers
+namespace WorldOfImagesAPI.Controllers
 {
     [Route("api/[controller]")]
     public class PlaceController : Controller
     {
         [HttpGet("{id}")]
-        public string Get(GetPlaceRequest getPlaceRequest)
+        public Place Get(GetPlaceRequest getPlaceRequest)
         {
-            return "fixedPlace";
+            return new Place();
         }
     }
 }
