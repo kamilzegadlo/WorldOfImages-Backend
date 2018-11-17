@@ -13,7 +13,7 @@ namespace WorldOfImages_APITest
         public void Get_Place_ShouldReturnFixedValue()
         {
             //arrange
-            var getPlaceRequest = new GetPlaceRequest(1, 2);
+            var getPlaceRequest = new Coordinates(1, 2);
 
             //act
             var result = placeController.Get(getPlaceRequest);

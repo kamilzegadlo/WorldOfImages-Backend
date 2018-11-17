@@ -7,7 +7,7 @@ namespace WorldOfImagesAPI.Controllers
     [Route("api/[controller]")]
     public class PlaceController : Controller
     {
-        public Place Get(GetPlaceRequest getPlaceRequest)
+        public Place Get(Coordinates getPlaceRequest)
         {
             return new Place(getPlaceRequest.x, getPlaceRequest.y, "unit test name");
         }
