@@ -15,5 +15,9 @@ namespace WorldOfImagesAPI.Repositories
             return null;
         }
 
+        public void AddPlace(Place place)
+        {
+        }
+
     }
 }

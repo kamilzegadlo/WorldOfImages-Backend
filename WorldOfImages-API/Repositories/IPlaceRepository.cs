@@ -6,5 +6,7 @@ namespace WorldOfImagesAPI.Repositories
     public interface IPlaceRepository
     {
         Place GetPlace(Coordinates coordinates);
+
+        void AddPlace(Place place);
     }
 }

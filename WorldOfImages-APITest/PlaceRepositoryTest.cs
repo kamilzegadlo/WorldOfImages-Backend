@@ -17,5 +17,12 @@ namespace WorldOfImagesAPITest
             Assert.Equal(null, result);
 
         }
+
+        [Fact]
+        public void AddPlace()
+        {
+            var placeRepository = new PlaceRepository();
+            placeRepository.AddPlace(new Place(1,2, "unit test name"));
+        }
     }
 }

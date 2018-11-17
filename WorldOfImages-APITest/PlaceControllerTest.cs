@@ -57,5 +57,19 @@ namespace WorldOfImages_APITest
             Assert.Equal((int)HttpStatusCode.NotFound, result.StatusCode);
         }
 
+        [Fact]
+        public void Add_Place()
+        {
+            //arrange
+            var place = new Place(1, 2, "unit test name");;
+
+            //act
+            var result = _placeController.Add(place) as StatusCodeResult;
+
+            //assert
+            Assert.NotNull(result);
+            Assert.Equal((int)HttpStatusCode.NoContent, result.StatusCode);
+        }
+
     }
 }

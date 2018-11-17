@@ -2,6 +2,7 @@
 using WorldOfImagesAPI.ValueObjects;
 using WorldOfImagesAPI.Repositories;
 using System.Net;
+using WorldOfImagesAPI.DomainEntities;
 
 namespace WorldOfImagesAPI.Controllers
 {
@@ -23,6 +24,13 @@ namespace WorldOfImagesAPI.Controllers
                 return new StatusCodeResult((int)HttpStatusCode.NotFound);
 
             return Ok(place);
+        }
+
+        public IActionResult Add(Place place)
+        {
+            _placeRepository.AddPlace(place);
+
+            return new StatusCodeResult((int)HttpStatusCode.NoContent);
         }
     }
 }
