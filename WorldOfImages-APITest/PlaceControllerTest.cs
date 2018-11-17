@@ -20,6 +20,11 @@ namespace WorldOfImages_APITest
 
             //assert
             Assert.IsType(typeof(Place), result);
+            Assert.Equal(1, result.x);
+            Assert.Equal(2, result.y);
+            Assert.Equal("unit test name", result.name);
+
+            Assert.Equal(0, result.images.Count);
         }
 
     }
