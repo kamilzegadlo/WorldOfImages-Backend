@@ -4,6 +4,8 @@ using WorldOfImagesAPI.DomainEntities;
 using Xunit;
 using WorldOfImagesAPI.Repositories;
 using FakeItEasy;
+using Microsoft.AspNetCore.Mvc;
+using System.Net;
 
 namespace WorldOfImages_APITest
 {
@@ -28,14 +30,31 @@ namespace WorldOfImages_APITest
             A.CallTo(() => _placeRepository.GetPlace(getPlaceRequest)).Returns(place);
 
             //act
-            var result = _placeController.Get(getPlaceRequest);
+            var result = _placeController.Get(getPlaceRequest) as OkObjectResult;
 
             //assert
-            Assert.IsType(typeof(Place), result);
-            Assert.Equal(2, result.x);
-            Assert.Equal(3, result.y);
-            Assert.Equal("unit test name", result.name);
-            Assert.Equal(0, result.images.Count);
+            Assert.NotNull(result);
+            Assert.IsType(typeof(Place), result.Value);
+            var resultPlace = result.Value as Place;
+            Assert.Equal(2, resultPlace.x);
+            Assert.Equal(3, resultPlace.y);
+            Assert.Equal("unit test name", resultPlace.name);
+            Assert.Equal(0, resultPlace.images.Count);
+        }
+
+        [Fact]
+        public void Get_Place_IfPlaceNotDefinedYet()
+        {
+            //arrange
+            var getPlaceRequest = new Coordinates(1, 2);
+            A.CallTo(() => _placeRepository.GetPlace(getPlaceRequest)).Returns(null);
+
+            //act
+            var result = _placeController.Get(getPlaceRequest) as StatusCodeResult;
+
+            //assert
+            Assert.NotNull(result);
+            Assert.Equal((int)HttpStatusCode.NotFound, result.StatusCode);
         }
 
     }
