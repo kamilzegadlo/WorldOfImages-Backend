@@ -16,6 +16,7 @@ namespace WorldOfImagesAPI.Controllers
             _placeRepository = placeRepository;
         }
 
+        [HttpGet]
         public IActionResult Get(Coordinates getPlaceRequest)
         {
             var place = _placeRepository.GetPlace(getPlaceRequest);
@@ -26,6 +27,7 @@ namespace WorldOfImagesAPI.Controllers
             return Ok(place);
         }
 
+        [HttpPost]
         public IActionResult Add(Place place)
         {
             _placeRepository.AddPlace(place);

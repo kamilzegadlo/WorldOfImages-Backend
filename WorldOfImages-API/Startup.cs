@@ -3,6 +3,8 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+using WorldOfImagesAPI;
+using WorldOfImagesAPI.Repositories;
 
 namespace WorldOfImages_API
 {
@@ -23,8 +25,10 @@ namespace WorldOfImages_API
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            // Add framework services.
             services.AddMvc();
+
+            //Static Cling - unit testing this because AddMvc is extenstion method (static one) is not a simple task...
+            services.AddScoped<IPlaceRepository, PlaceRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -32,6 +36,9 @@ namespace WorldOfImages_API
         {
             loggerFactory.AddConsole(Configuration.GetSection("Logging"));
             loggerFactory.AddDebug();
+
+            //Static Cling - unit testing this because UseMvc is extenstion method (static one) is not a simple task...
+            app.UseExceptionHandler(new CustomExceptionHandlerMiddleware().UseExceptionHandler);
 
             app.UseMvc();
         }
