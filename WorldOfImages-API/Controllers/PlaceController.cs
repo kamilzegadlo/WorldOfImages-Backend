@@ -3,6 +3,7 @@ using WorldOfImagesAPI.ValueObjects;
 using WorldOfImagesAPI.Repositories;
 using System.Net;
 using WorldOfImagesAPI.DomainEntities;
+using WorldOfImagesAPI.HttpRequestObjects;
 
 namespace WorldOfImagesAPI.Controllers
 {
@@ -17,9 +18,9 @@ namespace WorldOfImagesAPI.Controllers
         }
 
         [HttpGet]
-        public IActionResult Get(Coordinates getPlaceRequest)
+        public IActionResult Get(GetPlaceRequest getPlaceRequest)
         {
-            var place = _placeRepository.GetPlace(getPlaceRequest);
+            var place = _placeRepository.GetPlace(new Coordinates(getPlaceRequest));
 
             if (place == null)
                 return new StatusCodeResult((int)HttpStatusCode.NotFound);
@@ -28,9 +29,9 @@ namespace WorldOfImagesAPI.Controllers
         }
 
         [HttpPost]
-        public IActionResult Add(Place place)
+        public IActionResult Add([FromBody]AddPlaceRequest place)
         {
-            _placeRepository.AddPlace(place);
+            _placeRepository.AddPlace(new Place(place));
 
             return new StatusCodeResult((int)HttpStatusCode.NoContent);
         }

@@ -6,6 +6,7 @@ using WorldOfImagesAPI.Repositories;
 using FakeItEasy;
 using Microsoft.AspNetCore.Mvc;
 using System.Net;
+using WorldOfImagesAPI.HttpRequestObjects;
 
 namespace WorldOfImages_APITest
 {
@@ -25,9 +26,10 @@ namespace WorldOfImages_APITest
         public void Get_Place_ShouldCallPlaceRepository()
         {
             //arrange
-            var getPlaceRequest = new Coordinates(1, 2);
+            var getPlaceRequest = new GetPlaceRequest { x = 1, y = 2 };
             var place = new Place(2, 3, "unit test name");
-            A.CallTo(() => _placeRepository.GetPlace(getPlaceRequest)).Returns(place);
+            A.CallTo(() => _placeRepository.GetPlace(A<Coordinates>.That.Matches((c)=>c.x==1 && c.y==2)))
+                .Returns(place);
 
             //act
             var result = _placeController.Get(getPlaceRequest) as OkObjectResult;
@@ -36,8 +38,8 @@ namespace WorldOfImages_APITest
             Assert.NotNull(result);
             Assert.IsType(typeof(Place), result.Value);
             var resultPlace = result.Value as Place;
-            Assert.Equal(2, resultPlace.x);
-            Assert.Equal(3, resultPlace.y);
+            Assert.Equal(2, resultPlace.coordinates.x);
+            Assert.Equal(3, resultPlace.coordinates.y);
             Assert.Equal("unit test name", resultPlace.name);
             Assert.Equal(0, resultPlace.images.Count);
         }
@@ -46,8 +48,9 @@ namespace WorldOfImages_APITest
         public void Get_Place_IfPlaceNotDefinedYet()
         {
             //arrange
-            var getPlaceRequest = new Coordinates(1, 2);
-            A.CallTo(() => _placeRepository.GetPlace(getPlaceRequest)).Returns(null);
+            var getPlaceRequest = new GetPlaceRequest { x=1, y=2};
+            A.CallTo(() => _placeRepository.GetPlace(A<Coordinates>.That.Matches((c)=>c.x==1&&c.y==2)))
+                .Returns(null);
 
             //act
             var result = _placeController.Get(getPlaceRequest) as StatusCodeResult;
@@ -61,7 +64,7 @@ namespace WorldOfImages_APITest
         public void Add_Place()
         {
             //arrange
-            var place = new Place(1, 2, "unit test name");;
+            var place = new AddPlaceRequest { x = 1, y = 2, name = "unit test name" };
 
             //act
             var result = _placeController.Add(place) as StatusCodeResult;
