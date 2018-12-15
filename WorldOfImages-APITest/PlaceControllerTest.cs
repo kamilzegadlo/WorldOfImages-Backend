@@ -1,12 +1,12 @@
 using WorldOfImagesAPI.Controllers;
-using WorldOfImagesAPI.ValueObjects;
-using WorldOfImagesAPI.DomainEntities;
+using WorldOfImagesAPI_Model.ValueObjects;
+using WorldOfImagesAPI_Model.DomainEntities;
 using Xunit;
-using WorldOfImagesAPI.Repositories;
 using FakeItEasy;
 using Microsoft.AspNetCore.Mvc;
 using System.Net;
 using WorldOfImagesAPI.HttpRequestObjects;
+using WorldOfImagesAPI_Model.Repositories;
 
 namespace WorldOfImages_APITest
 {

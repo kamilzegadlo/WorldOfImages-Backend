@@ -1,8 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using WorldOfImagesAPI.ValueObjects;
-using WorldOfImagesAPI.Repositories;
+using WorldOfImagesAPI_Model.ValueObjects;
+using WorldOfImagesAPI_Model.Repositories;
 using System.Net;
-using WorldOfImagesAPI.DomainEntities;
+using WorldOfImagesAPI_Model.DomainEntities;
 using WorldOfImagesAPI.HttpRequestObjects;
 
 namespace WorldOfImagesAPI.Controllers
@@ -23,7 +23,7 @@ namespace WorldOfImagesAPI.Controllers
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
 
-            var place = _placeRepository.GetPlace(new Coordinates(getPlaceRequest));
+            var place = _placeRepository.GetPlace(new Coordinates(getPlaceRequest.x, getPlaceRequest.y));
 
             if (place == null)
                 return new StatusCodeResult((int)HttpStatusCode.NotFound);
@@ -37,7 +37,7 @@ namespace WorldOfImagesAPI.Controllers
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
 
-            _placeRepository.AddPlace(new Place(place));
+            _placeRepository.AddPlace(new Place(place.x, place.y, place.name));
 
             return new StatusCodeResult((int)HttpStatusCode.NoContent);
         }

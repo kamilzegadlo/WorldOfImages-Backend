@@ -1,6 +1,4 @@
-﻿using WorldOfImagesAPI.HttpRequestObjects;
-
-namespace WorldOfImagesAPI.ValueObjects
+﻿namespace WorldOfImagesAPI_Model.ValueObjects
 {
     public class Coordinates
     {
@@ -11,12 +9,6 @@ namespace WorldOfImagesAPI.ValueObjects
         {
             this.x = x;
             this.y = y;
-        }
-
-        public Coordinates(GetPlaceRequest getPlaceRequest)
-        {
-            x = getPlaceRequest.x;
-            y = getPlaceRequest.y;
         }
     }
 }

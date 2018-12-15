@@ -3,8 +3,9 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+using WorldOfImages_RepositoryProcedures;
 using WorldOfImagesAPI;
-using WorldOfImagesAPI.Repositories;
+using WorldOfImagesAPI_Model.Repositories;
 
 namespace WorldOfImages_API
 {

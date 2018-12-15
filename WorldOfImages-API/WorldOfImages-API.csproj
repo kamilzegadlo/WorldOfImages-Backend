@@ -16,5 +16,9 @@
   <ItemGroup>
     <DotNetCliToolReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Tools" Version="1.0.2" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\WorldOfImages_Model\WorldOfImages_Model.csproj" />
+    <ProjectReference Include="..\WorldOfImages_RepositoryProcedures\WorldOfImages_RepositoryProcedures.csproj" />
+  </ItemGroup>
 
 </Project>

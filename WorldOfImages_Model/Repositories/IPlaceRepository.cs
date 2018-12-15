@@ -1,7 +1,7 @@
-﻿using WorldOfImagesAPI.DomainEntities;
-using WorldOfImagesAPI.ValueObjects;
+﻿using WorldOfImagesAPI_Model.DomainEntities;
+using WorldOfImagesAPI_Model.ValueObjects;
 
-namespace WorldOfImagesAPI.Repositories
+namespace WorldOfImagesAPI_Model.Repositories
 {
     public interface IPlaceRepository
     {

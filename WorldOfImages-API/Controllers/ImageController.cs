@@ -1,8 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using WorldOfImagesAPI.ValueObjects;
-using WorldOfImagesAPI.Repositories;
+using WorldOfImagesAPI_Model.Repositories;
 using System.Net;
-using WorldOfImagesAPI.DomainEntities;
+using WorldOfImagesAPI_Model.DomainEntities;
 using WorldOfImagesAPI.HttpRequestObjects;
 
 namespace WorldOfImagesAPI.Controllers
@@ -23,7 +22,7 @@ namespace WorldOfImagesAPI.Controllers
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
 
-            _imageRepository.AddImage(new Image(addImageRequest));
+            _imageRepository.AddImage(new Image(addImageRequest.x, addImageRequest.y, addImageRequest.image));
 
            return new StatusCodeResult((int)HttpStatusCode.NoContent);
         }
