@@ -29,6 +29,7 @@ namespace WorldOfImages_API
 
             //Static Cling - unit testing this because AddMvc is extenstion method (static one) is not a simple task...
             services.AddScoped<IPlaceRepository, PlaceRepository>();
+            services.AddScoped<IImageRepository, ImageRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

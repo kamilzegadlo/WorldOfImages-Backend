@@ -61,7 +61,7 @@ namespace WorldOfImages_APITest
         }
 
         [Fact]
-        public void Add_Place()
+        public void Add_Place_ShouldCallPlaceRepository()
         {
             //arrange
             var place = new AddPlaceRequest { x = 1, y = 2, name = "unit test name" };
@@ -72,6 +72,9 @@ namespace WorldOfImages_APITest
             //assert
             Assert.NotNull(result);
             Assert.Equal((int)HttpStatusCode.NoContent, result.StatusCode);
+            A.CallTo(() => _placeRepository.AddPlace(A<Place>.That.Matches(p=>
+                p.coordinates.x==place.x && p.coordinates.y==place.y && p.name==place.name)))
+                .MustHaveHappenedOnceExactly();
         }
 
     }
