@@ -20,6 +20,9 @@ namespace WorldOfImagesAPI.Controllers
         [HttpGet]
         public IActionResult Get(GetPlaceRequest getPlaceRequest)
         {
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
+
             var place = _placeRepository.GetPlace(new Coordinates(getPlaceRequest));
 
             if (place == null)
@@ -31,6 +34,9 @@ namespace WorldOfImagesAPI.Controllers
         [HttpPost]
         public IActionResult Add([FromBody]AddPlaceRequest place)
         {
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
+
             _placeRepository.AddPlace(new Place(place));
 
             return new StatusCodeResult((int)HttpStatusCode.NoContent);

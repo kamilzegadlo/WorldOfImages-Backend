@@ -61,6 +61,22 @@ namespace WorldOfImages_APITest
         }
 
         [Fact]
+        public void Get_Place_IfRequestInvalid()
+        {
+            //arrange
+            var getPlaceRequest = new GetPlaceRequest { x = 1, y = 2 };
+            _placeController.ModelState.AddModelError("unit test", "unit test");
+
+            //act
+            var result = _placeController.Get(getPlaceRequest) as BadRequestObjectResult;
+
+            //assert
+            Assert.NotNull(result);
+            Assert.Equal((int)HttpStatusCode.BadRequest, result.StatusCode);
+            Assert.NotNull(result.Value);
+        }
+
+        [Fact]
         public void Add_Place_ShouldCallPlaceRepository()
         {
             //arrange
@@ -75,6 +91,22 @@ namespace WorldOfImages_APITest
             A.CallTo(() => _placeRepository.AddPlace(A<Place>.That.Matches(p=>
                 p.coordinates.x==place.x && p.coordinates.y==place.y && p.name==place.name)))
                 .MustHaveHappenedOnceExactly();
+        }
+
+        [Fact]
+        public void Add_Place_IfRequestInvalid()
+        {
+            //arrange
+            var place = new AddPlaceRequest { x = 1, y = 2, name = "unit test name" };
+            _placeController.ModelState.AddModelError("unit test key", "unit test value");
+
+            //act
+            var result = _placeController.Add(place) as BadRequestObjectResult;
+
+            //assert
+            Assert.NotNull(result);
+            Assert.Equal((int)HttpStatusCode.BadRequest, result.StatusCode);
+            Assert.NotNull(result.Value);
         }
 
     }

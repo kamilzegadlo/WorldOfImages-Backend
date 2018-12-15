@@ -38,5 +38,20 @@ namespace WorldOfImagesAPITest
                 .MustHaveHappenedOnceExactly();
         }
 
+        [Fact]
+        public void Add_Image_IfRequestIsInvalid()
+        {
+            //arrange
+            var addImageRequest = new AddImageRequest { x = 1, y = 2, image = "unit test image" };
+            _imageController.ModelState.AddModelError("unit test", "unit test");
+
+            var result = _imageController.Add(addImageRequest) as BadRequestObjectResult;
+
+            //assert
+            Assert.NotNull(result);
+            Assert.Equal((int)HttpStatusCode.BadRequest, result.StatusCode);
+            Assert.NotNull(result.Value);
+        }
+
     }
 }

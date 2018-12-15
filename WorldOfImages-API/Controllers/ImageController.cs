@@ -20,6 +20,9 @@ namespace WorldOfImagesAPI.Controllers
         [HttpPost]
         public IActionResult Add([FromBody]AddImageRequest addImageRequest)
         {
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
+
             _imageRepository.AddImage(new Image(addImageRequest));
 
            return new StatusCodeResult((int)HttpStatusCode.NoContent);
