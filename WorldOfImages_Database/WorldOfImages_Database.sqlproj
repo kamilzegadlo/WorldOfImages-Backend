@@ -63,6 +63,9 @@
     <Folder Include="dbo\Tables\" />
     <Folder Include="Snapshots" />
     <Folder Include="dbo\Procedures" />
+    <Folder Include="Scripts" />
+    <Folder Include="Scripts\Post-Deploy" />
+    <Folder Include="Scripts\Pre-Deploy" />
   </ItemGroup>
   <ItemGroup>
     <Build Include="dbo\Tables\Place.sql" />
@@ -73,6 +76,13 @@
     <Build Include="dbo\Procedures\GetImagesForPlace.sql" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Snapshots\WorldOfImages_Database_20181215_17-13-20.dacpac" />
+    <None Include="Scripts\Post-Deploy\PostDeploy_v1_0.sql" />
+    <None Include="Snapshots\WorldOfImages_Database_20181219_23-26-56.dacpac" />
+  </ItemGroup>
+  <ItemGroup>
+    <PreDeploy Include="Scripts\Pre-Deploy\Script.PreDeployment1.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <PostDeploy Include="Scripts\Post-Deploy\Script.PostDeployment1.sql" />
   </ItemGroup>
 </Project>
