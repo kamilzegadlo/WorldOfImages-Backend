@@ -2,6 +2,19 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
+    <ApplicationIcon />
+    <OutputType>Library</OutputType>
+    <StartupObject />
   </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="FakeItEasy" Version="4.9.1" />
+    <PackageReference Include="xunit" Version="2.4.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\WorldOfImages_Model\WorldOfImages_Model.csproj" />
+    <ProjectReference Include="..\WorldOfImages_RepositoryProcedures\WorldOfImages_RepositoryProcedures.csproj" />
+  </ItemGroup>
 
 </Project>
