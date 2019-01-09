@@ -3,7 +3,6 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
-using WorldOfImages_Model;
 using WorldOfImages_RepositoryProcedures;
 using WorldOfImagesAPI;
 using WorldOfImagesAPI_Model.Repositories;
@@ -32,8 +31,6 @@ namespace WorldOfImages_API
             //Static Cling - unit testing this because AddMvc is extenstion method (static one) is not a simple task...
             services.AddScoped<IPlaceRepository, PlaceRepository>();
             services.AddScoped<IImageRepository, ImageRepository>();
-
-            services.Configure<Configuration>(Configuration);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
