@@ -31,13 +31,15 @@ namespace WorldOfImages_API
             //Static Cling - unit testing this because AddMvc is extenstion method (static one) is not a simple task...
             services.AddScoped<IPlaceRepository, PlaceRepository>();
             services.AddScoped<IImageRepository, ImageRepository>();
+
+            services.AddSingleton<IConfiguration>(Configuration);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
         {
             loggerFactory.AddConsole(Configuration.GetSection("Logging"));
-            loggerFactory.AddDebug();
+            //loggerFactory.AddDebug();
 
             //Static Cling - unit testing this because UseMvc is extenstion method (static one) is not a simple task...
             app.UseExceptionHandler(new CustomExceptionHandlerMiddleware().UseExceptionHandler);
